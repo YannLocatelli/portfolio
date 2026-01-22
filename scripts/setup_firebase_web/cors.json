@@ -1,0 +1,20 @@
+[
+    {
+        "origin": [
+            "http://localhost:5000",
+            "http://localhost:3000",
+            "https://portfolio-76903.web.app",
+            "https://portfolio-76903-staging.web.app",
+            "https://yannlocatelli.fr"
+        ],
+        "method": [
+            "GET",
+            "HEAD"
+        ],
+        "responseHeader": [
+            "Content-Type",
+            "Authorization"
+        ],
+        "maxAgeSeconds": 3600
+    }
+]

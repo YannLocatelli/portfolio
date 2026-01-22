@@ -2,7 +2,8 @@
 
 Répertoire pour le portfolio de Yann Locatelli
 
-## Setup
+<details>
+<summary>Setup</summary>
 
 Configurer IAM sur Google Cloud
 
@@ -17,3 +18,18 @@ Télécharger clé dans le Compte de Service (format .json)
 
 Dans Github -> Repository -> Secrets -> Actions -> Repository secrets, ajouter le contenu du .json
 
+## Firestore
+
+Lancer une seule fois
+
+``` sh
+docker build -t firebase-storage-cors ./scripts/setup_firebase_web  
+
+docker run --rm \
+  -e PROJECT_ID=portfolio-76903 \
+  -e BUCKET_NAME=portfolio-76903.firebasestorage.app \
+  -v "$(pwd)/secrets/portfolio-76903-3d6de65300e1.json:/key.json:ro" \
+  firebase-storage-cors
+```
+
+</details>
