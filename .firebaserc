@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "portfolio"
+  },
+  "targets": {
+    "portfolio": {
+      "hosting": {
+        "prod": [
+          "portfolio"
+        ],
+        "staging": [
+          "portfolio-staging"
+        ]
+      }
+    }
+  }
+}

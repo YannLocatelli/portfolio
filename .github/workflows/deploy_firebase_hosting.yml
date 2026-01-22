@@ -1,0 +1,42 @@
+name: Deploy Flutter Web to Firebase Hosting
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Cache pub dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            pub-${{ runner.os }}-
+
+      - name: Flutter pub get
+        run: flutter pub get
+
+      - name: Build Flutter Web
+        run: flutter build web
+
+      - name: Deploy to Firebase Hosting
+        uses: w9jds/firebase-action@v2.2.0
+        with:
+          args: deploy --only hosting --project portfolio-76903 --debug
+        env:
+          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
