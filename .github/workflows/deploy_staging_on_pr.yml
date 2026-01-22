@@ -1,12 +1,11 @@
-name: Deploy Flutter Web to Firebase Hosting
+name: Deploy Staging on PR
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
-  build-and-deploy:
+  deploy-staging:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,10 +33,10 @@ jobs:
       - name: Build Flutter Web
         run: flutter build web
 
-      - name: Deploy to Firebase Hosting (prod)
+      - name: Deploy to Firebase Hosting (staging)
         uses: w9jds/firebase-action@v2.2.0
         with:
-          args: deploy --only hosting:portfolio-76903 --project portfolio-76903
+          args: deploy --only hosting:portfolio-76903-staging --project portfolio-76903
         env:
           GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
 
