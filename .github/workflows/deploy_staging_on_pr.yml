@@ -4,6 +4,10 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+permissions:
+  pull-requests: write
+  contents: read
+
 jobs:
   deploy-staging:
     runs-on: ubuntu-latest
@@ -40,3 +44,40 @@ jobs:
         env:
           GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
 
+      - name: Replace preview URL comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const url = "https://portfolio-76903-staging.web.app";
+            const marker = "🚀 Preview staging";
+
+            // Liste tous les commentaires de la PR
+            const { data: comments } = await github.rest.issues.listComments({
+              owner,
+              repo,
+              issue_number: prNumber,
+            });
+
+            // Supprime les anciens commentaires de preview
+            const previews = comments.filter(c => c.body.includes(marker));
+
+            for (const comment of previews) {
+              await github.rest.issues.deleteComment({
+                owner,
+                repo,
+                comment_id: comment.id,
+              });
+            }
+
+            // Crée un nouveau commentaire
+            const body = `${marker} disponible :\n\n👉 ${url}`;
+
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: prNumber,
+              body,
+            });
