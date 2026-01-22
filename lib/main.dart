@@ -1,6 +1,18 @@
+// Core
 import 'package:flutter/material.dart';
 
-void main() {
+// External
+import 'package:portfolio/services/firebase.dart';
+import 'package:portfolio/services/firestore.dart';
+import 'package:portfolio/services/storage.dart';
+
+// Portfolio
+import 'package:portfolio/globals.dart' as globals;
+
+void main() async {
+  await initializeFirebase();
+  await AdminDatabaseService.syncMonitoring();
+
   runApp(const MyApp());
 }
 
@@ -55,6 +67,21 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String? imageURL;
+
+  @override
+  void initState() {
+    super.initState();
+
+    syncStorage();
+  }
+
+  void syncStorage() async {
+    final url = await FirebaseStorageService.getTestFile();
+    setState(() {
+      imageURL = url;
+    });
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -109,6 +136,13 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            if (imageURL != null)
+              Image.network(
+                imageURL!,
+                fit: BoxFit.cover,
+                webHtmlElementStrategy: WebHtmlElementStrategy.prefer,
+              ),
+            Text('Is online: ${globals.maintenanceEnabled == false}'),
           ],
         ),
       ),
