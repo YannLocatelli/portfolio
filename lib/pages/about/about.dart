@@ -18,7 +18,7 @@ class _AboutPageState extends State<AboutPage> {
       appBar: AppBar(
         leading: BackButton(
           onPressed: () {
-            context.go("/");
+            context.go("/", extra: 'back');
           },
         ),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
