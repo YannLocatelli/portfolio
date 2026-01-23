@@ -1,12 +1,12 @@
 // Core
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 // External
-import 'package:portfolio/services/storage.dart';
+import 'package:go_router/go_router.dart';
 
 // Portfolio
 import 'package:portfolio/supports/globals.dart' as globals;
+import 'package:portfolio/services/storage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
               ),
             Text('Is online: ${globals.maintenanceEnabled == false}'),
             TextButton(
-              onPressed: () => context.push("/about"),
+              onPressed: () => context.go("/about"),
               child: Text("Go About"),
             ),
           ],

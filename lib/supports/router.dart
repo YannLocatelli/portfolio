@@ -1,7 +1,5 @@
-// Core
-import 'package:firebase_analytics/firebase_analytics.dart';
-
 // External
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:go_router/go_router.dart';
 
 // Portfolio
