@@ -7,6 +7,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 
+// Portfolio
+import 'package:portfolio/services/firestore.dart';
+
 const firebaseWebOptions = FirebaseOptions(
   apiKey: "AIzaSyCnsntwBejQrK3K3jzp4MVN2itbR_semLE",
   authDomain: "portfolio-76903.firebaseapp.com",
@@ -35,4 +38,6 @@ Future initializeFirebase() async {
   }
 
   FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);
+
+  await AdminDatabaseService.syncMonitoring();
 }
