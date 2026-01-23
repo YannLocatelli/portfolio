@@ -16,20 +16,11 @@ class _AboutPageState extends State<AboutPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(
-          onPressed: () {
-            context.go("/", extra: 'back');
-          },
-        ),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text("About"),
+        leading: BackButton(onPressed: () => context.go("/", extra: 'back')),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: .center,
-          children: [const Text('About')],
-        ),
-      ),
+      body: Center(child: Image.asset("derp.jpg")),
     );
   }
 }
