@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: router,
-      title: 'Yann Locatelli',
+      title: 'Yann Locatelli | Portfolio',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: .fromSeed(seedColor: Colors.orange),
