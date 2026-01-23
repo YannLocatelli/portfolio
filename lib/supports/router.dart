@@ -1,3 +1,6 @@
+// Core
+import 'package:flutter/material.dart';
+
 // External
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:go_router/go_router.dart';
@@ -9,7 +12,30 @@ import 'package:portfolio/pages/home/home.dart';
 final router = GoRouter(
   observers: [FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance)],
   routes: [
-    GoRoute(path: '/', builder: (context, state) => const HomePage()),
+    GoRoute(
+      path: '/',
+      pageBuilder: (context, state) {
+        final isBack = state.extra == 'back';
+
+        return CustomTransitionPage(
+          child: const HomePage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            final begin = isBack ? const Offset(-1, 0) : const Offset(1, 0);
+            const end = Offset.zero;
+
+            return SlideTransition(
+              position: animation.drive(
+                Tween(
+                  begin: begin,
+                  end: end,
+                ).chain(CurveTween(curve: Curves.ease)),
+              ),
+              child: child,
+            );
+          },
+        );
+      },
+    ),
     GoRoute(path: '/about', builder: (context, state) => const AboutPage()),
     // GoRoute(
     //   path: '/project/:id',
