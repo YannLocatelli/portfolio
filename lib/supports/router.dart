@@ -6,7 +6,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:go_router/go_router.dart';
 
 // Portfolio
-import 'package:portfolio/pages/about/about.dart';
+import 'package:portfolio/pages/dummy_page.dart';
 import 'package:portfolio/pages/home/home.dart';
 
 final router = GoRouter(
@@ -36,7 +36,7 @@ final router = GoRouter(
         );
       },
     ),
-    GoRoute(path: '/about', builder: (context, state) => const AboutPage()),
+    GoRoute(path: '/dummy', builder: (context, state) => const DummyPage()),
     // GoRoute(
     //   path: '/project/:id',
     //   builder: (context, state) {
