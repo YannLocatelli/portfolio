@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 // Portfolio
 import 'package:portfolio/pages/dummy_page.dart';
 import 'package:portfolio/pages/home/home.dart';
+import 'package:portfolio/pages/project/project_page.dart';
 
 final router = GoRouter(
   observers: [FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance)],
@@ -37,12 +38,12 @@ final router = GoRouter(
       },
     ),
     GoRoute(path: '/dummy', builder: (context, state) => const DummyPage()),
-    // GoRoute(
-    //   path: '/project/:id',
-    //   builder: (context, state) {
-    //     final id = state.pathParameters['id']!;
-    //     return ProjectPage(id: id);
-    //   },
-    // ),
+    GoRoute(
+      path: '/project/:id',
+      builder: (context, state) {
+        final id = state.pathParameters['id']!;
+        return ProjectPage(id: id);
+      },
+    ),
   ],
 );
