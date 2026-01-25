@@ -41,7 +41,7 @@ class TimeLineItem extends StatelessWidget {
   Widget descriptionText(BuildContext context) {
     return AutoSizeText(
       description,
-      maxLines: 3,
+      maxLines: 7,
       minFontSize: 14,
       overflow: .ellipsis,
       style: Theme.of(context).textTheme.bodyMedium,
