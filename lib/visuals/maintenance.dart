@@ -6,7 +6,10 @@ import 'package:portfolio/supports/theme.dart';
 import 'package:portfolio/services/storage.dart';
 
 class MaintenanceWidget extends StatefulWidget {
-  const MaintenanceWidget({super.key});
+  final String message;
+
+  const MaintenanceWidget({super.key, this.message = "En maintenance..."});
+
   @override
   State<MaintenanceWidget> createState() => _MaintenanceWidgetState();
 }
@@ -35,7 +38,7 @@ class _MaintenanceWidgetState extends State<MaintenanceWidget> {
         mainAxisAlignment: .center,
         children: [
           Text(
-            'En maintenance...',
+            widget.message,
             style: Theme.of(
               context,
             ).textTheme.titleLarge?.copyWith(color: normalPrimary),
