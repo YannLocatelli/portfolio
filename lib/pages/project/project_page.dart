@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 
 // External
 import 'package:go_router/go_router.dart';
-import 'package:portfolio/models/project.dart';
 
 // Portfolio
 import 'package:portfolio/supports/theme.dart';
 import 'package:portfolio/visuals/maintenance.dart';
 import 'package:portfolio/services/firestore.dart';
+import 'package:portfolio/models/project.dart';
+import 'package:portfolio/services/storage.dart';
+import 'package:portfolio/pages/project/header.dart';
+import 'package:portfolio/pages/project/body.dart';
 
 class ProjectPage extends StatefulWidget {
   final String id;
@@ -23,6 +26,8 @@ class ProjectPageState extends State<ProjectPage> {
   bool isLoading = true;
 
   Project? project;
+  String illustrationURL =
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-76903.firebasestorage.app/o/test.jpg?alt=media&token=dc279022-c36d-48b0-969e-86dd144d1bbf";
 
   @override
   void initState() {
@@ -33,8 +38,11 @@ class ProjectPageState extends State<ProjectPage> {
 
   void syncDatabase() async {
     project = await ProjectDatabaseService.fetchProject(widget.id);
+    if (project == null) return;
+    final url = await FirebaseStorageService.getFile(project!.illustrationName);
 
     setState(() {
+      if (url != null) illustrationURL = url;
       isLoading = false;
     });
   }
@@ -48,7 +56,25 @@ class ProjectPageState extends State<ProjectPage> {
   }
 
   Widget content() {
-    return MaintenanceWidget();
+    return Column(
+      children: [
+        HeaderWidget(project: project!),
+
+        Expanded(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(16),
+            child: body(),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget body() {
+    if (project!.missions.isEmpty) {
+      return MaintenanceWidget();
+    }
+    return BodyWidget(project: project!);
   }
 
   @override
