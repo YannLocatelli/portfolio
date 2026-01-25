@@ -50,6 +50,7 @@ class _HomePageState extends State<HomePage> {
           title: p.title,
           description: p.description,
           year: p.year,
+          illustrationName: p.illustrationName,
           onOpen: () => context.go("/project/${p.id}"),
         ),
       );

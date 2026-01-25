@@ -4,23 +4,58 @@ import 'package:flutter/material.dart';
 // External
 import 'package:auto_size_text/auto_size_text.dart';
 
-class TimeLineItem extends StatelessWidget {
+// Portfolio
+import 'package:portfolio/services/storage.dart';
+
+class TimeLineItem extends StatefulWidget {
   final String title;
   final String description;
   final String year;
+  final String illustrationName;
   final VoidCallback onOpen;
 
   const TimeLineItem({
     super.key,
+
     required this.title,
     required this.description,
     required this.year,
+    required this.illustrationName,
     required this.onOpen,
   });
 
+  @override
+  State<TimeLineItem> createState() => _TimeLineItemState();
+}
+
+class _TimeLineItemState extends State<TimeLineItem> {
+  bool isLoading = true;
+  String illustrationURL =
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-76903.firebasestorage.app/o/test.jpg?alt=media&token=dc279022-c36d-48b0-969e-86dd144d1bbf";
+
+  @override
+  void initState() {
+    super.initState();
+
+    fetchIllustration();
+  }
+
+  void fetchIllustration() async {
+    final url = await FirebaseStorageService.getFile(widget.illustrationName);
+
+    setState(() {
+      if (url != null) illustrationURL = url;
+      isLoading = false;
+    });
+  }
+
+  Widget loading() {
+    return Center(child: CircularProgressIndicator());
+  }
+
   Widget yearText(BuildContext context) {
     return AutoSizeText(
-      year,
+      widget.year,
       minFontSize: 14,
       style: Theme.of(context).textTheme.titleSmall,
     );
@@ -28,7 +63,7 @@ class TimeLineItem extends StatelessWidget {
 
   Widget titleText(BuildContext context) {
     return AutoSizeText(
-      title,
+      widget.title,
       maxLines: 1,
       minFontSize: 17,
       overflow: .ellipsis,
@@ -38,9 +73,29 @@ class TimeLineItem extends StatelessWidget {
     );
   }
 
+  Widget illustrationImage(BuildContext context) {
+    final double size = 80;
+
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(color: const Color(0xFF302A24), width: 1),
+      ),
+      child: ClipOval(
+        child: Image.network(
+          illustrationURL,
+          fit: .cover,
+          webHtmlElementStrategy: .prefer,
+        ),
+      ),
+    );
+  }
+
   Widget descriptionText(BuildContext context) {
     return AutoSizeText(
-      description,
+      widget.description,
       maxLines: 7,
       minFontSize: 14,
       overflow: .ellipsis,
@@ -52,7 +107,7 @@ class TimeLineItem extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: ElevatedButton.icon(
-        onPressed: onOpen,
+        onPressed: widget.onOpen,
         label: const Text('Voir plus'),
         icon: const Icon(Icons.arrow_forward),
         iconAlignment: .end,
@@ -74,9 +129,20 @@ class TimeLineItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: .start,
           children: [
-            titleText(context),
-            spacer(),
-            yearText(context),
+            Row(
+              children: [
+                Expanded(
+                  flex: 100,
+                  child: Column(
+                    crossAxisAlignment: .start,
+                    children: [titleText(context), spacer(), yearText(context)],
+                  ),
+                ),
+                Spacer(),
+                isLoading ? loading() : illustrationImage(context),
+              ],
+            ),
+
             spacer(height: 2),
             Divider(),
             spacer(),
