@@ -61,6 +61,7 @@ class ProjectPageState extends State<ProjectPage> {
               : "Yann Locatelli",
           style: const TextStyle(color: Colors.white),
         ),
+        centerTitle: true,
         leading: BackButton(
           onPressed: () => context.go("/", extra: 'back'),
           color: Colors.white,

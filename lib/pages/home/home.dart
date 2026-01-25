@@ -67,6 +67,7 @@ class _HomePageState extends State<HomePage> {
           "Yann Locatelli",
           style: const TextStyle(color: Colors.white),
         ),
+        centerTitle: true,
       ),
       body: isLoading ? loading() : Timeline(children: buildItems(context)),
     );
