@@ -5,12 +5,14 @@ class Project {
   String title;
   String description;
   String year;
+  String illustrationName;
 
   Project({
     required this.id,
     required this.title,
     required this.description,
     required this.year,
+    required this.illustrationName,
   });
 
   // Database fields
@@ -20,6 +22,7 @@ class Project {
   static const String titleField = 'title';
   static const String descriptionField = 'description';
   static const String yearField = 'year';
+  static const String illustrationNameField = 'illustrationName';
 
   factory Project.fromDocument(String id, Map<String, dynamic> doc) {
     return Project(
@@ -27,6 +30,7 @@ class Project {
       title: doc[titleField] ?? "",
       description: doc[descriptionField] ?? "",
       year: doc[yearField] ?? "",
+      illustrationName: doc[illustrationNameField] ?? "test.jpg",
     );
   }
 }
