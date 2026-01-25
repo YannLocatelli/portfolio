@@ -15,4 +15,15 @@ class FirebaseStorageService {
       return null;
     }
   }
+
+  static Future<String?> getFile(String name) async {
+    try {
+      final ref = FirebaseStorage.instance.ref('$name.jpg');
+      final url = await ref.getDownloadURL();
+      return url;
+    } catch (exception) {
+      debugPrint(exception.toString());
+      return null;
+    }
+  }
 }
