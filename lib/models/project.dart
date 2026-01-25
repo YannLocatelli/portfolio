@@ -7,6 +7,8 @@ class Project {
   String year;
   String illustrationName;
 
+  List missions = [];
+
   Project({
     required this.id,
     required this.title,
