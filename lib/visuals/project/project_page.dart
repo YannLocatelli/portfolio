@@ -58,23 +58,21 @@ class ProjectPageState extends State<ProjectPage> {
   Widget content() {
     return Column(
       children: [
-        HeaderWidget(project: project!),
-
-        Expanded(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
-            child: body(),
-          ),
+        Padding(
+          padding: EdgeInsets.only(bottom: 16),
+          child: HeaderWidget(project: project!),
         ),
+
+        Expanded(child: body()),
       ],
     );
   }
 
   Widget body() {
-    if (project!.missions.isEmpty) {
+    if (project!.sections.isEmpty) {
       return MaintenanceWidget();
     }
-    return BodyWidget(project: project!);
+    return BodyWidget(sections: project!.sections);
   }
 
   @override

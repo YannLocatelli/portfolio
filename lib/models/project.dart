@@ -1,3 +1,5 @@
+import 'package:portfolio/models/section.dart';
+
 class Project {
   String id;
   bool? visible;
@@ -7,7 +9,7 @@ class Project {
   String year;
   String illustrationName;
 
-  List missions = [];
+  List<Section> sections = [];
 
   Project({
     required this.id,
@@ -21,6 +23,7 @@ class Project {
   static const String databaseName = 'project';
 
   static const String visibleField = 'visible';
+  static const String orderField = 'order';
   static const String titleField = 'title';
   static const String descriptionField = 'description';
   static const String yearField = 'year';
