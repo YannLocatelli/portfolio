@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 
 // Portfolio
 import 'package:portfolio/supports/theme.dart';
-import 'package:portfolio/visuals/maintenance.dart';
+import 'package:portfolio/visuals/maintenance_widget.dart';
 
 class DummyPage extends StatelessWidget {
   const DummyPage({super.key});

@@ -8,8 +8,8 @@ import 'package:portfolio/services/firestore.dart';
 
 // Portfolio
 import 'package:portfolio/supports/theme.dart';
-import 'package:portfolio/pages/home/timeline.dart';
-import 'package:portfolio/pages/home/timeline_item.dart';
+import 'package:portfolio/visuals/home/timeline_widget.dart';
+import 'package:portfolio/visuals/home/timeline_item.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

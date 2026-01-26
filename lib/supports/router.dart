@@ -6,9 +6,9 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:go_router/go_router.dart';
 
 // Portfolio
-import 'package:portfolio/pages/dummy_page.dart';
-import 'package:portfolio/pages/home/home.dart';
-import 'package:portfolio/pages/project/project_page.dart';
+import 'package:portfolio/visuals/dummy_page.dart';
+import 'package:portfolio/visuals/home/home_page.dart';
+import 'package:portfolio/visuals/project/project_page.dart';
 
 final router = GoRouter(
   observers: [FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance)],

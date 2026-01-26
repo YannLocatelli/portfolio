@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 // Portfolio
-import 'package:portfolio/supports/theme.dart';
-import 'package:portfolio/visuals/maintenance.dart';
-import 'package:portfolio/services/firestore.dart';
 import 'package:portfolio/models/project.dart';
+import 'package:portfolio/supports/theme.dart';
+import 'package:portfolio/services/firestore.dart';
 import 'package:portfolio/services/storage.dart';
-import 'package:portfolio/pages/project/header.dart';
-import 'package:portfolio/pages/project/body.dart';
+import 'package:portfolio/visuals/maintenance_widget.dart';
+import 'package:portfolio/visuals/project/header_view.dart';
+import 'package:portfolio/visuals/project/body_view.dart';
 
 class ProjectPage extends StatefulWidget {
   final String id;
