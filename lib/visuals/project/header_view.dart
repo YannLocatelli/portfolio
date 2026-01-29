@@ -55,7 +55,8 @@ class _HeaderWidgetState extends State<HeaderWidget> {
   Widget titleText(BuildContext context) {
     return AutoSizeText(
       widget.project.title,
-      maxLines: null,
+      maxLines: 2,
+      overflow: .clip,
       minFontSize: 17,
       style: Theme.of(
         context,
@@ -63,20 +64,26 @@ class _HeaderWidgetState extends State<HeaderWidget> {
     );
   }
 
-  Widget illustrationImage(BuildContext context) {
-    final double size = 80;
+  Widget illustrationImage(BuildContext context, bool isLoading) {
+    if (isLoading) {
+      return loading();
+    }
 
     return Container(
-      width: size,
-      height: size,
+      clipBehavior: .antiAlias,
+      foregroundDecoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(color: const Color(0xFF302A24), width: 2),
+      ),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(color: const Color(0xFF302A24), width: 1),
+        border: Border.all(color: const Color(0xFF302A24), width: 2),
       ),
+      constraints: BoxConstraints(maxHeight: 120),
       child: ClipOval(
         child: Image.network(
           illustrationURL,
-          fit: .cover,
+          fit: .fitHeight,
           webHtmlElementStrategy: .prefer,
         ),
       ),
@@ -86,7 +93,8 @@ class _HeaderWidgetState extends State<HeaderWidget> {
   Widget descriptionText(BuildContext context) {
     return AutoSizeText(
       widget.project.description,
-      maxLines: null,
+      maxLines: 7,
+      overflow: .clip,
       minFontSize: 14,
       style: Theme.of(context).textTheme.bodyMedium,
     );
@@ -103,24 +111,23 @@ class _HeaderWidgetState extends State<HeaderWidget> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
+        child: Row(
+          crossAxisAlignment: .start,
           children: [
-            Row(
-              crossAxisAlignment: .start,
-              children: [
-                Expanded(
-                  flex: 100,
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [titleText(context), spacer(), yearText(context)],
-                  ),
-                ),
-                Spacer(),
-                isLoading ? loading() : illustrationImage(context),
-              ],
+            Expanded(
+              flex: 4,
+              child: Column(
+                crossAxisAlignment: .start,
+                children: [
+                  titleText(context),
+                  spacer(),
+                  yearText(context),
+                  spacer(height: 12),
+                  descriptionText(context),
+                ],
+              ),
             ),
-            spacer(height: 12),
-            descriptionText(context),
+            Expanded(flex: 1, child: illustrationImage(context, isLoading)),
           ],
         ),
       ),
