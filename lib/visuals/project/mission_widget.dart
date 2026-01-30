@@ -226,7 +226,10 @@ class MissionWidgetState extends State<MissionWidget> {
             padding: .fromLTRB(cardPadding, cardPadding, cardPadding, 0),
             child: titleText(context),
           ),
-          const Divider(height: 24, thickness: 1),
+          Padding(
+            padding: .symmetric(vertical: 0, horizontal: cardPadding),
+            child: const Divider(height: 24, thickness: 1),
+          ),
           Padding(
             padding: .symmetric(vertical: 0, horizontal: cardPadding),
             child: Column(
@@ -240,8 +243,8 @@ class MissionWidgetState extends State<MissionWidget> {
           spacer(height: 12),
           Container(
             width: .infinity,
-            padding: .all(cardPadding),
             color: Theme.of(context).colorScheme.primaryContainer,
+            padding: .all(cardPadding),
             child: Column(
               crossAxisAlignment: .start,
               children: [
