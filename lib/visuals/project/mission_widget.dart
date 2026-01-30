@@ -230,9 +230,10 @@ class MissionWidgetState extends State<MissionWidget> {
           Padding(
             padding: .symmetric(vertical: 0, horizontal: cardPadding),
             child: Column(
+              crossAxisAlignment: .start,
               children: [
                 descriptionText(context),
-                illustrationImage(context, isLoading),
+                Center(child: illustrationImage(context, isLoading)),
               ],
             ),
           ),
