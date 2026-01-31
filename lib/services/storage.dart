@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 class FirebaseStorageService {
-  static Future<String?> getTestFile() async {
+  static Future<String?> getMaintenanceFile() async {
     try {
-      final ref = FirebaseStorage.instance.ref('test.jpg');
+      final ref = FirebaseStorage.instance.ref('maintenance.jpg');
       final url = await ref.getDownloadURL();
       return url;
     } catch (exception) {

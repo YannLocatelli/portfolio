@@ -25,7 +25,7 @@ class _MaintenanceWidgetState extends State<MaintenanceWidget> {
   }
 
   void syncStorage() async {
-    final url = await FirebaseStorageService.getTestFile();
+    final url = await FirebaseStorageService.getMaintenanceFile();
     setState(() {
       imageURL = url;
     });
