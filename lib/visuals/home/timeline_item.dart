@@ -31,7 +31,7 @@ class TimeLineItem extends StatefulWidget {
 class _TimeLineItemState extends State<TimeLineItem> {
   bool isLoading = true;
   String illustrationURL =
-      "https://firebasestorage.googleapis.com/v0/b/portfolio-76903.firebasestorage.app/o/test.jpg?alt=media&token=dc279022-c36d-48b0-969e-86dd144d1bbf";
+      "https://firebasestorage.googleapis.com/v0/b/portfolio-76903.firebasestorage.app/o/default.png?alt=media&token=46bb01df-ff8b-44c7-9186-685c0f4d81b7";
 
   @override
   void initState() {

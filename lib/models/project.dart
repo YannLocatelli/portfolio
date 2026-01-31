@@ -35,7 +35,7 @@ class Project {
       title: doc[titleField] ?? "",
       description: doc[descriptionField] ?? "",
       year: doc[yearField] ?? "",
-      illustrationName: doc[illustrationNameField] ?? "test.jpg",
+      illustrationName: doc[illustrationNameField] ?? "default.png",
     );
   }
 }
