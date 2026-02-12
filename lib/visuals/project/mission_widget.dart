@@ -192,7 +192,12 @@ class MissionWidgetState extends State<MissionWidget> {
               children: [
                 Expanded(flex: 3, child: descriptionText(context)),
                 spacer(),
-                Expanded(flex: 1, child: illustrationImage(context, isLoading)),
+
+                if (illustrationURL != null)
+                  Expanded(
+                    flex: 1,
+                    child: illustrationImage(context, isLoading),
+                  ),
               ],
             ),
           ),
