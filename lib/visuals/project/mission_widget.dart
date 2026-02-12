@@ -49,7 +49,7 @@ class MissionWidgetState extends State<MissionWidget> {
   }
 
   Widget spacer({double height = 6}) {
-    return SizedBox(height: height);
+    return SizedBox(height: height, width: height);
   }
 
   Widget titleText(BuildContext context) {
@@ -191,6 +191,7 @@ class MissionWidgetState extends State<MissionWidget> {
             child: Row(
               children: [
                 Expanded(flex: 3, child: descriptionText(context)),
+                spacer(),
                 Expanded(flex: 1, child: illustrationImage(context, isLoading)),
               ],
             ),
