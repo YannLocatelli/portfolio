@@ -101,7 +101,7 @@ class GalleryWidgetState extends State<GalleryWidget> {
       return YoutubePlayer(aspectRatio: 16 / 9, controller: controller);
     }
 
-    return Image.network(url, fit: .cover, webHtmlElementStrategy: .prefer);
+    return Image.network(url, fit: .cover);
   }
 
   Widget arrowButton(PageController controller, {bool isLeft = true}) {
