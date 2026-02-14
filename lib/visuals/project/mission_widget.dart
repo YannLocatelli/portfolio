@@ -77,13 +77,7 @@ class MissionWidgetState extends State<MissionWidget> {
         shape: .rectangle,
         border: .all(color: const Color(0xFF302A24), width: 2),
       ),
-      child: ClipRRect(
-        child: Image.network(
-          illustrationURL!,
-          fit: .cover,
-          webHtmlElementStrategy: .prefer,
-        ),
-      ),
+      child: ClipRRect(child: Image.network(illustrationURL!, fit: .cover)),
     );
   }
 

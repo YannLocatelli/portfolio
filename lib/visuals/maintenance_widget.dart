@@ -48,7 +48,6 @@ class _MaintenanceWidgetState extends State<MaintenanceWidget> {
             Image.network(
               imageURL!,
               fit: .cover,
-              webHtmlElementStrategy: .prefer,
             ),
         ],
       ),

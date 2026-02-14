@@ -80,13 +80,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
         border: Border.all(color: const Color(0xFF302A24), width: 2),
       ),
       constraints: BoxConstraints(maxHeight: 120),
-      child: ClipOval(
-        child: Image.network(
-          illustrationURL,
-          fit: .fitHeight,
-          webHtmlElementStrategy: .prefer,
-        ),
-      ),
+      child: ClipOval(child: Image.network(illustrationURL, fit: .fitHeight)),
     );
   }
 

@@ -87,7 +87,6 @@ class _TimeLineItemState extends State<TimeLineItem> {
         child: Image.network(
           illustrationURL,
           fit: .cover,
-          webHtmlElementStrategy: .prefer,
         ),
       ),
     );
