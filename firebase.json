@@ -35,7 +35,25 @@
                     ]
                 },
                 {
-                    "source": "**/*.@(js|css|png|jpg|jpeg|gif|svg|webp|woff|woff2)",
+                    "source": "**/*.js",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "no-cache"
+                        }
+                    ]
+                },
+                {
+                    "source": "**/*.css",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "no-cache"
+                        }
+                    ]
+                },
+                {
+                    "source": "**/*.@(png|jpg|jpeg|gif|svg|webp|woff|woff2)",
                     "headers": [
                         {
                             "key": "Cache-Control",
@@ -95,7 +113,25 @@
                     ]
                 },
                 {
-                    "source": "**/*.@(js|css|png|jpg|jpeg|gif|svg|webp|woff|woff2)",
+                    "source": "**/*.js",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "no-cache"
+                        }
+                    ]
+                },
+                {
+                    "source": "**/*.css",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "no-cache"
+                        }
+                    ]
+                },
+                {
+                    "source": "**/*.@(png|jpg|jpeg|gif|svg|webp|woff|woff2)",
                     "headers": [
                         {
                             "key": "Cache-Control",
