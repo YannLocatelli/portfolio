@@ -51,7 +51,7 @@ jobs:
             const prNumber = context.payload.pull_request.number;
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-            const url = "https://portfolio-76903-staging.web.app";
+            const url = "https://staging.yannlocatelli.fr";
             const marker = "🚀 Preview staging";
 
             // Liste tous les commentaires de la PR
