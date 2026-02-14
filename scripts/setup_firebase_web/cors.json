@@ -5,7 +5,8 @@
             "http://localhost:3000",
             "https://portfolio-76903.web.app",
             "https://portfolio-76903-staging.web.app",
-            "https://yannlocatelli.fr"
+            "https://yannlocatelli.fr",
+            "https://staging.yannlocatelli.fr"
         ],
         "method": [
             "GET",

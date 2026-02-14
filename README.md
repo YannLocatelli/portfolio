@@ -23,7 +23,7 @@ Dans Github -> Repository -> Secrets -> Actions -> Repository secrets, ajouter l
 Lancer une seule fois
 
 ``` sh
-docker build -t firebase-storage-cors ./scripts/setup_firebase_web  
+docker build -t firebase-storage-cors ./scripts/setup_firebase_web
 
 docker run --rm \
   -e PROJECT_ID=portfolio-76903 \
