@@ -43,6 +43,8 @@ class _TimeLineItemState extends State<TimeLineItem> {
   void fetchIllustration() async {
     final url = await FirebaseStorageService.getFile(widget.illustrationName);
 
+    if (!mounted) return;
+
     setState(() {
       if (url != null) illustrationURL = url;
       isLoading = false;
