@@ -35,12 +35,12 @@ jobs:
         run: flutter pub get
 
       - name: Build Flutter Web
-        run: flutter build web
+        run: flutter build web --release --pwa-strategy=none
 
       - name: Deploy to Firebase Hosting (staging)
         uses: w9jds/firebase-action@v2.2.0
         with:
-          args: deploy --only hosting:portfolio-76903-staging --project portfolio-76903
+          args: deploy --only hosting:portfolio-76903-staging --project portfolio-76903 --force
         env:
           GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
 
