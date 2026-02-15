@@ -24,8 +24,8 @@ final lightTheme = ThemeData(
   colorScheme: lightColorScheme,
   textTheme: GoogleFonts.figtreeTextTheme().copyWith(
     titleLarge: const TextStyle(color: Color(0xFF302A24)),
-    titleMedium: const TextStyle(color: Color(0xFF302A24)),
-    titleSmall: const TextStyle(color: Color(0xFF302A24)),
+    titleMedium: const TextStyle(color: Color(0xFF302A24), fontWeight: .bold),
+    titleSmall: const TextStyle(color: Color(0xFF5A5A5A), fontStyle: .italic),
 
     bodyLarge: const TextStyle(color: Color(0xFF302A24)),
     bodyMedium: const TextStyle(color: Color(0xFF302A24)),
@@ -67,8 +67,8 @@ final darkTheme = ThemeData(
   colorScheme: darkColorScheme,
   textTheme: GoogleFonts.figtreeTextTheme().copyWith(
     titleLarge: const TextStyle(color: Color(0xFF302A24)),
-    titleMedium: const TextStyle(color: Color(0xFF302A24)),
-    titleSmall: const TextStyle(color: Color(0xFF302A24)),
+    titleMedium: const TextStyle(color: Color(0xFF302A24), fontWeight: .bold),
+    titleSmall: const TextStyle(color: Color(0xFF5A5A5A), fontStyle: .italic),
 
     bodyLarge: const TextStyle(color: Color(0xFF302A24)),
     bodyMedium: const TextStyle(color: Color(0xFF302A24)),

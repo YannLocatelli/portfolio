@@ -57,9 +57,7 @@ class MissionWidgetState extends State<MissionWidget> {
       widget.mission.title,
       maxLines: null,
       minFontSize: 20,
-      style: Theme.of(
-        context,
-      ).textTheme.titleMedium?.copyWith(fontWeight: .bold),
+      style: Theme.of(context).textTheme.titleMedium,
     );
   }
 

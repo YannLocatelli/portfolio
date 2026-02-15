@@ -48,7 +48,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
     return AutoSizeText(
       widget.project.year,
       minFontSize: 14,
-      style: Theme.of(context).textTheme.titleMedium,
+      style: Theme.of(context).textTheme.titleSmall,
     );
   }
 
@@ -56,11 +56,9 @@ class _HeaderWidgetState extends State<HeaderWidget> {
     return AutoSizeText(
       widget.project.title,
       maxLines: 2,
-      overflow: .clip,
-      minFontSize: 17,
-      style: Theme.of(
-        context,
-      ).textTheme.titleLarge?.copyWith(fontWeight: .bold),
+      overflow: .ellipsis,
+      minFontSize: 20,
+      style: Theme.of(context).textTheme.titleMedium,
     );
   }
 
@@ -87,9 +85,9 @@ class _HeaderWidgetState extends State<HeaderWidget> {
   Widget descriptionText(BuildContext context) {
     return AutoSizeText(
       widget.project.description,
-      maxLines: 7,
-      overflow: .clip,
-      minFontSize: 14,
+      maxLines: 2,
+      overflow: .ellipsis,
+      minFontSize: 16,
       style: Theme.of(context).textTheme.bodyMedium,
     );
   }
@@ -114,7 +112,6 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                 crossAxisAlignment: .start,
                 children: [
                   titleText(context),
-                  spacer(),
                   yearText(context),
                   spacer(height: 12),
                   descriptionText(context),
