@@ -1,5 +1,6 @@
 // Core
 import 'package:flutter/material.dart';
+import 'dart:html' as html;
 
 // External
 import 'package:auto_size_text/auto_size_text.dart';
@@ -83,6 +84,15 @@ class GalleryWidgetState extends State<GalleryWidget> {
   Widget mediaItem(String url) {
     if (url.contains('youtube.com') || url.contains('youtu.be')) {
       final id = YoutubePlayerController.convertUrlToId(url)!;
+
+      return HtmlElementView.fromTagName(
+        tagName: 'iframe',
+        onElementCreated: (element) {
+          final iframe = element as html.IFrameElement;
+          iframe.src = 'https://www.youtube.com/embed/$id';
+          iframe.style.border = 'none';
+        },
+      );
 
       final controller = YoutubePlayerController.fromVideoId(
         videoId: id,
