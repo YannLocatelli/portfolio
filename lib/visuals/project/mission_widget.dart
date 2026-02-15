@@ -88,9 +88,13 @@ class MissionWidgetState extends State<MissionWidget> {
       crossAxisAlignment: .start,
       children: widget.mission.text
           .map(
-            (t) => Padding(
+            (content) => Padding(
               padding: const EdgeInsets.only(bottom: 8),
-              child: AutoSizeText(t),
+              child: AutoSizeText(
+                content,
+                minFontSize: 16,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
             ),
           )
           .toList(),
