@@ -81,7 +81,7 @@ class ProjectPageState extends State<ProjectPage> {
       appBar: AppBar(
         title: Text(
           project != null
-              ? "Yann Locatelli | ${project?.title}"
+              ? "Yann Locatelli | ${project?.title.split(':').first.trim()}"
               : "Yann Locatelli",
           style: const TextStyle(color: Colors.white),
         ),
