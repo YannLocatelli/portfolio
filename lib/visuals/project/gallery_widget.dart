@@ -69,19 +69,7 @@ class GalleryWidgetState extends State<GalleryWidget> {
   }
 
   Widget mediaWidget(PageController controller) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: illustrationsName.length,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.9,
-            child: mediaItem(illustrationsName[index]),
-          ),
-        );
-      },
-    );
+    return mediaItem(illustrationsName[0]);
 
     return PageView.builder(
       controller: controller,
