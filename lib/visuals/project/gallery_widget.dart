@@ -109,17 +109,17 @@ class GalleryWidgetState extends State<GalleryWidget> {
       //   },
       // );
 
-      return HtmlElementView.fromTagName(
-        tagName: 'iframe',
-        onElementCreated: (element) {
-          final iframe = element as html.IFrameElement;
-          iframe.src = 'https://www.youtube.com/embed/$id';
-          iframe.allow =
-              'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen';
-          iframe.setAttribute('allowfullscreen', 'true');
-          iframe.style.border = 'none';
-        },
-      );
+      // return HtmlElementView.fromTagName(
+      //   tagName: 'iframe',
+      //   onElementCreated: (element) {
+      //     final iframe = element as html.IFrameElement;
+      //     iframe.src = 'https://www.youtube.com/embed/$id';
+      //     iframe.allow =
+      //         'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+      //     iframe.setAttribute('allowfullscreen', 'true');
+      //     iframe.style.border = 'none';
+      //   },
+      // );
 
       final controller = YoutubePlayerController.fromVideoId(
         videoId: id,
