@@ -66,12 +66,10 @@ class _TimeLineItemState extends State<TimeLineItem> {
   Widget titleText(BuildContext context) {
     return AutoSizeText(
       widget.title,
-      maxLines: 1,
-      minFontSize: 17,
+      maxLines: 2,
+      minFontSize: 20,
       overflow: .ellipsis,
-      style: Theme.of(
-        context,
-      ).textTheme.titleMedium?.copyWith(fontWeight: .bold),
+      style: Theme.of(context).textTheme.titleMedium,
     );
   }
 
@@ -85,12 +83,7 @@ class _TimeLineItemState extends State<TimeLineItem> {
         shape: BoxShape.circle,
         border: Border.all(color: const Color(0xFF302A24), width: 1),
       ),
-      child: ClipOval(
-        child: Image.network(
-          illustrationURL,
-          fit: .cover,
-        ),
-      ),
+      child: ClipOval(child: Image.network(illustrationURL, fit: .cover)),
     );
   }
 
@@ -98,7 +91,7 @@ class _TimeLineItemState extends State<TimeLineItem> {
     return AutoSizeText(
       widget.description,
       maxLines: 7,
-      minFontSize: 14,
+      minFontSize: 16,
       overflow: .ellipsis,
       style: Theme.of(context).textTheme.bodyMedium,
     );
@@ -136,7 +129,7 @@ class _TimeLineItemState extends State<TimeLineItem> {
                   flex: 100,
                   child: Column(
                     crossAxisAlignment: .start,
-                    children: [titleText(context), spacer(), yearText(context)],
+                    children: [titleText(context), yearText(context)],
                   ),
                 ),
                 Spacer(),
@@ -144,7 +137,6 @@ class _TimeLineItemState extends State<TimeLineItem> {
               ],
             ),
 
-            spacer(height: 2),
             Divider(),
             spacer(),
             descriptionText(context),

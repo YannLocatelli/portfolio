@@ -62,9 +62,7 @@ class GalleryWidgetState extends State<GalleryWidget> {
       "Galerie",
       maxLines: 1,
       minFontSize: 20,
-      style: Theme.of(
-        context,
-      ).textTheme.titleMedium?.copyWith(fontWeight: .bold),
+      style: Theme.of(context).textTheme.titleMedium,
     );
   }
 
