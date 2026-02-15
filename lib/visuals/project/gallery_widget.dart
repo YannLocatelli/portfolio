@@ -74,10 +74,7 @@ class GalleryWidgetState extends State<GalleryWidget> {
       itemBuilder: (context, index) {
         return Padding(
           padding: const .symmetric(horizontal: 12),
-          child: ClipRRect(
-            borderRadius: .circular(12),
-            child: mediaItem(illustrationsName[index]),
-          ),
+          child: mediaItem(illustrationsName[index]),
         );
       },
     );
