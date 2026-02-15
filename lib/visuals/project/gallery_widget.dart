@@ -90,6 +90,9 @@ class GalleryWidgetState extends State<GalleryWidget> {
         params: const YoutubePlayerParams(
           showControls: true,
           showFullscreenButton: true,
+          strictRelatedVideos: true,
+          enableCaption: false,
+          playsInline: true,
         ),
       );
 
