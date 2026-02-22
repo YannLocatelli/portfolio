@@ -102,26 +102,28 @@ class GalleryWidgetState extends State<GalleryWidget> {
     return Image.network(url, fit: .cover);
   }
 
-  Widget arrowButton(PageController controller, {bool isLeft = true}) {
-    return Positioned(
-      left: isLeft ? 0 : null,
-      right: isLeft ? null : 0,
-      child: IconButton(
-        icon: Icon(isLeft ? Icons.chevron_left : Icons.chevron_right),
-        onPressed: () {
-          if (isLeft) {
-            controller.previousPage(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeOut,
-            );
-          } else {
-            controller.nextPage(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeOut,
-            );
-          }
-        },
-      ),
+  Widget arrowButton(
+    PageController controller, {
+    bool isLeft = true,
+    bool isDisable = false,
+  }) {
+    return IconButton(
+      icon: Icon(isLeft ? Icons.chevron_left : Icons.chevron_right),
+      onPressed: isDisable
+          ? null
+          : () {
+              if (isLeft) {
+                controller.previousPage(
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeOut,
+                );
+              } else {
+                controller.nextPage(
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeOut,
+                );
+              }
+            },
     );
   }
 
@@ -132,30 +134,7 @@ class GalleryWidgetState extends State<GalleryWidget> {
 
     final cardPadding = 16.0;
 
-    return Card(
-      elevation: 3,
-      clipBehavior: .antiAlias,
-      shape: RoundedRectangleBorder(borderRadius: .circular(4)),
-      child: Column(
-        crossAxisAlignment: .start,
-        children: [
-          Padding(
-            padding: .fromLTRB(cardPadding, cardPadding, cardPadding, 0),
-            child: titleText(context),
-          ),
-          Padding(
-            padding: .symmetric(vertical: 0, horizontal: cardPadding),
-            child: const Divider(height: 24, thickness: 1),
-          ),
-          isWideScreen ? buildLandscape(context) : buildPortrait(context),
-          spacer(height: cardPadding),
-        ],
-      ),
-    );
-  }
-
-  Widget buildLandscape(BuildContext context) {
-    final fixedHeight = 300.0;
+    final fixedHeight = isWideScreen ? 300.0 : 200.0;
     final fixedWidth = 16 / 9 * fixedHeight;
     final screenWidth = MediaQuery.of(context).size.width;
     final viewPortFraction = fixedWidth / screenWidth;
@@ -165,6 +144,55 @@ class GalleryWidgetState extends State<GalleryWidget> {
       viewportFraction: viewPortFraction,
     );
 
+    return Card(
+      elevation: 3,
+      clipBehavior: .antiAlias,
+      shape: RoundedRectangleBorder(borderRadius: .circular(4)),
+      child: Column(
+        crossAxisAlignment: .start,
+        children: [
+          Padding(
+            padding: .fromLTRB(cardPadding, cardPadding, cardPadding, 0),
+            child: isWideScreen
+                ? titleText(context)
+                : Row(
+                    children: [
+                      titleText(context),
+
+                      Spacer(),
+
+                      arrowButton(
+                        controller,
+                        isLeft: true,
+                        isDisable: currentIndex == 0,
+                      ),
+
+                      arrowButton(
+                        controller,
+                        isLeft: false,
+                        isDisable: currentIndex == illustrationsName.length - 1,
+                      ),
+                    ],
+                  ),
+          ),
+          Padding(
+            padding: .symmetric(vertical: 0, horizontal: cardPadding),
+            child: const Divider(height: 24, thickness: 1),
+          ),
+          isWideScreen
+              ? buildLandscape(context, controller, fixedHeight)
+              : buildPortrait(context, controller, fixedHeight),
+          spacer(height: cardPadding),
+        ],
+      ),
+    );
+  }
+
+  Widget buildLandscape(
+    BuildContext context,
+    PageController controller,
+    double fixedHeight,
+  ) {
     return SizedBox(
       height: fixedHeight,
       child: isLoading
@@ -177,26 +205,27 @@ class GalleryWidgetState extends State<GalleryWidget> {
                   child: mediaWidget(controller),
                 ),
 
-                if (currentIndex > 0) arrowButton(controller, isLeft: true),
+                if (currentIndex > 0)
+                  Positioned(
+                    left: 0,
+                    child: arrowButton(controller, isLeft: true),
+                  ),
 
                 if (currentIndex < illustrationsName.length - 1)
-                  arrowButton(controller, isLeft: false),
+                  Positioned(
+                    right: 0,
+                    child: arrowButton(controller, isLeft: false),
+                  ),
               ],
             ),
     );
   }
 
-  Widget buildPortrait(BuildContext context) {
-    final fixedHeight = 200.0;
-    final fixedWidth = 16 / 9 * fixedHeight;
-    final screenWidth = MediaQuery.of(context).size.width;
-    final viewPortFraction = fixedWidth / screenWidth;
-
-    final controller = PageController(
-      initialPage: currentIndex,
-      viewportFraction: viewPortFraction,
-    );
-
+  Widget buildPortrait(
+    BuildContext context,
+    PageController controller,
+    double fixedHeight,
+  ) {
     return SizedBox(
       height: fixedHeight,
       child: isLoading ? loading() : mediaWidget(controller),
